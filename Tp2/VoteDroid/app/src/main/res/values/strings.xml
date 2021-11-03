@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">VoteDroid</string>
+    <string name="btn_ajouter">AJOUTER</string>
 </resources>
