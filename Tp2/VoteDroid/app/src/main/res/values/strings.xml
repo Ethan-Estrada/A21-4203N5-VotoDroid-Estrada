@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">VoteDroid</string>
     <string name="btn_ajouter">AJOUTER</string>
+    <string name="item_suprimer_q">Supprimer toutes les questions</string>
+    <string name="item_surprimer_v">Supprimer touts les votes</string>
+
 </resources>
