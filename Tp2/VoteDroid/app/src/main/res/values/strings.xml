@@ -3,5 +3,7 @@
     <string name="btn_ajouter">AJOUTER</string>
     <string name="item_suprimer_q">Supprimer toutes les questions</string>
     <string name="item_surprimer_v">Supprimer touts les votes</string>
+    <string name="shared_TaQuestion">Ta question</string>
+    <string name="btn_question">POSE LA QUESTION</string>
 
 </resources>
