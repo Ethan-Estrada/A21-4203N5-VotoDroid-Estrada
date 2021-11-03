@@ -1,5 +1,6 @@
 package org.estrada.votedroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,5 +20,16 @@ public class PoseQActivity extends AppCompatActivity {
         binding = ActivityPoseBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+
+        binding.btnPoseQ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PoseQActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+
     }
 }

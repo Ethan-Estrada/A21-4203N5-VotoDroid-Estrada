@@ -29,7 +29,7 @@
             android:id="@+id/btn_poseQ"
             android:layout_margin="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:backgroundTint="#AABBCC"
             android:textColor="@color/Background_Color_title"
             android:text="@string/btn_question" />
