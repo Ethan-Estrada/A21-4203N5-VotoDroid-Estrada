@@ -5,5 +5,7 @@
     <string name="item_surprimer_v">Supprimer touts les votes</string>
     <string name="shared_TaQuestion">Ta question</string>
     <string name="btn_question">POSE LA QUESTION</string>
-
+    <string name="txt_ViewHard">Que penses-tu de l\'ascension de skywalker ?</string>
+    <string name="txt_Voter">Nom du votant</string>
+    <string name="btn_Voter">VOTE</string>
 </resources>
