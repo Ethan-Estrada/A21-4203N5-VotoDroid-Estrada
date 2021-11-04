@@ -21,6 +21,12 @@
         <activity
             android:name=".PoseQActivity">
         </activity>
+        <activity
+            android:name=".Resultat">
+        </activity>
+        <activity
+            android:name=".Vote">
+        </activity>
     </application>
 
 </manifest>

@@ -1,12 +1,17 @@
 package org.estrada.votedroid;
 
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.MyViewHolder> {
+
 
 public List<Question> list;
 
@@ -23,12 +29,34 @@ public List<Question> list;
  */
 public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerView.ViewHolder {
     public TextView txtQuestion;
-    public ImageButton btnImage;
+    public ImageButton btnImageQ;
+
+
     public MyViewHolder(LinearLayout v) {
         super(v);
         // Define click listener for the ViewHolder's View
         txtQuestion = v.findViewById(R.id.txtQuestion);
-        btnImage = v.findViewById(R.id.btnImage);
+        btnImageQ = v.findViewById(R.id.btnImage);
+
+        btnImageQ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), Resultat.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), Vote.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
+
+
+
     }
 }
 
@@ -66,4 +94,8 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
     public int getItemCount() {
         return list.size();
     }
+
+
+
 }
+

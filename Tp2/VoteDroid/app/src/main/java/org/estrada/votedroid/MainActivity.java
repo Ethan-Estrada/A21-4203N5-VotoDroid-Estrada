@@ -1,5 +1,7 @@
 package org.estrada.votedroid;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,8 +13,6 @@ import android.view.MenuInflater;
 import android.view.View;
 
 import org.estrada.votedroid.databinding.ActivityMainBinding;
-
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
 
         this.initRecycler();
         this.remplirRecycler("Que penses tu des pommes ?");
@@ -57,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         this.remplirRecycler("Que penses tu des melons ?");
         this.remplirRecycler("Que penses tu des papayes ?");
         this.remplirRecycler("Que penses tu des pêches ?");
-
-
     }
 
 
