@@ -16,4 +16,8 @@
     <style name="Button.White" parent="ThemeOverlay.AppCompat">
         <item name="colorAccent">@android:color/white</item>
     </style>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#D6D7D7</item>
+        <item name="colorControlActivated">#333333</item>
+    </style>
 </resources>
