@@ -36,8 +36,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
         this.initRecycler();
-        this.remplirRecycler("Jaime les pommes");
-        this.remplirRecycler("Jaime le corn");
+        this.remplirRecycler("Que penses tu des pommes ?");
+        this.remplirRecycler("Que penses tu des poires ?");
+        this.remplirRecycler("Que penses tu des bananes ?");
+        this.remplirRecycler("Que penses tu des mangues ?");
+        this.remplirRecycler("Que penses tu des limes ?");
+        this.remplirRecycler("Que penses tu des citrons ?");
+        this.remplirRecycler("Que penses tu des mandarines ?");
+        this.remplirRecycler("Que penses tu des oranges ?");
+        this.remplirRecycler("Que penses tu des fraises ?");
+        this.remplirRecycler("Que penses tu des figues ?");
+        this.remplirRecycler("Que penses tu des avocats ?");
+        this.remplirRecycler("Que penses tu des raisins ?");
+        this.remplirRecycler("Que penses tu des clémentines ?");
+        this.remplirRecycler("Que penses tu des tomates ?");
+        this.remplirRecycler("Que penses tu des abricots ?");
+        this.remplirRecycler("Que penses tu des ananas ?");
+        this.remplirRecycler("Que penses tu des kakis ?");
+        this.remplirRecycler("Que penses tu des kiwis ?");
+        this.remplirRecycler("Que penses tu des melons ?");
+        this.remplirRecycler("Que penses tu des papayes ?");
+        this.remplirRecycler("Que penses tu des pêches ?");
+
 
     }
 
