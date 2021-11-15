@@ -44,6 +44,7 @@ public class Resultat extends AppCompatActivity {
 
         BarData barData = new BarData(barDataSet);
 
+        barChart.ma
         barChart.getXChartMin();
         barChart.setFilterTouchesWhenObscured(true);
         barChart.setData(barData);
