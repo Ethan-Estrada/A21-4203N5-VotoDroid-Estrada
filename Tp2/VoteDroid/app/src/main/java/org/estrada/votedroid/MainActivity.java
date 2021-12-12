@@ -5,27 +5,43 @@ import static androidx.core.content.ContextCompat.startActivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 
+import org.estrada.votedroid.bd.BD;
 import org.estrada.votedroid.databinding.ActivityMainBinding;
+import org.estrada.votedroid.exceptions.MauvaiseQuestion;
+import org.estrada.votedroid.modele.VDQuestion;
+import org.estrada.votedroid.service.ServiceImplementation;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     QuestionAdapter mAdapter;
+    private ServiceImplementation service;
+    private BD maBD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        maBD = Room.databaseBuilder(getApplicationContext(), BD.class,"BDQuestions")
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
+        service = ServiceImplementation.getInstance(maBD);
+        creerQuestion();
+
+
 
         binding.btnAjouterAccueil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +74,16 @@ public class MainActivity extends AppCompatActivity {
         this.remplirRecycler("Que penses tu des melons ?");
         this.remplirRecycler("Que penses tu des papayes ?");
         this.remplirRecycler("Que penses tu des pêches ?");
+    }
+
+    private void creerQuestion() {
+        try {
+            VDQuestion maQuestion = new VDQuestion();
+            maQuestion.texteQuestion ="AS-tu hate au nouveau film The Matrix Resurrection?";
+            service.creerQuestion(maQuestion);
+        }catch (MauvaiseQuestion m){
+            Log.e("CREERQUESTION", "Impossible de creer la question: "+ m.getMessage() );
+        }
     }
 
 
