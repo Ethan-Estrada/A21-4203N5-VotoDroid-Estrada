@@ -104,6 +104,34 @@ public class TestApplication {
         Assert.fail("Exception MauvaiseQuestion non lancée");
     }
 
+    ///
+    @Test
+    public void ajoutQuestionokbd(){
+        VDQuestion question = new VDQuestion();
+        question.texteQuestion = "jrngljrgnl";
+        Long id = bd.monDao().insertQuestion(question);
+
+        Assert.assertNotNull(question.idQuestion);
+
+        // Jamais assumer le id d'une bd
+        //Assert.assertEquals(1, id, 0);
+    }
+
+
+
+    @Test
+    public  void ajoutQuestionsOKK() throws MauvaiseQuestion{
+        VDQuestion question = new VDQuestion();
+        question.texteQuestion ="rgrgrg";
+
+        Assert.assertNull(question.idQuestion);
+        service.creerQuestion(question);
+        Assert.assertNotNull(question.idQuestion);
+    }
+
+
+
+
 
     /*
     @After

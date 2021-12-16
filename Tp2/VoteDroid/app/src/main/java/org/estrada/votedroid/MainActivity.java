@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         this.initRecycler();
-        this.remplirRecycler("Que penses tu des pommes ?");
+        this.remplirRecycler(service.toutesLesQuestions().toString());
         this.remplirRecycler("Que penses tu des poires ?");
         this.remplirRecycler("Que penses tu des bananes ?");
         this.remplirRecycler("Que penses tu des mangues ?");
