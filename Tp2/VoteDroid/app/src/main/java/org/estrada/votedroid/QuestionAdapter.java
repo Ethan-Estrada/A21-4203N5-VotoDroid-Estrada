@@ -15,13 +15,14 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.estrada.votedroid.modele.VDQuestion;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.MyViewHolder> {
 
-
-public List<Question> list;
+public List<VDQuestion> list;
 
 /**
  * Provide a reference to the type of views that you are using
@@ -30,7 +31,6 @@ public List<Question> list;
 public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerView.ViewHolder {
     public TextView txtQuestion;
     public ImageButton btnImageQ;
-
 
     public MyViewHolder(LinearLayout v) {
         super(v);
@@ -53,15 +53,10 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
                 v.getContext().startActivity(i);
             }
         });
-
-
-
-
     }
 }
-
     public QuestionAdapter() {
-        list = new ArrayList<>();
+        list = new ArrayList<VDQuestion>();
     }
 
     // Create new views (invoked by the layout manager)
@@ -73,7 +68,6 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
 
         MyViewHolder vh = new MyViewHolder(v);
 
-        Log.i("DEBOGAGE", "Appel a onCreateViewHolder ");
         return vh;
     }
 
@@ -83,10 +77,7 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        Question questionCourante = list.get(position);
-        holder.txtQuestion.setText(questionCourante.LaQuestion);
-
-        Log.i("DEBOGAGE", "Appel a onBindViewHolder" + position);
+        holder.txtQuestion.setText(list.get(position).texteQuestion);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -94,8 +85,6 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
     public int getItemCount() {
         return list.size();
     }
-
-
 
 }
 

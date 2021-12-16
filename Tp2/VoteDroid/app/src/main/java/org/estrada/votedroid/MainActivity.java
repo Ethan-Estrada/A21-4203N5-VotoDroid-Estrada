@@ -39,41 +39,18 @@ public class MainActivity extends AppCompatActivity {
                 .fallbackToDestructiveMigration()
                 .build();
         service = ServiceImplementation.getInstance(maBD);
-        creerQuestion();
-
-
 
         binding.btnAjouterAccueil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, PoseQActivity.class);
                 startActivity(i);
+
             }
         });
 
-
         this.initRecycler();
-        this.remplirRecycler(service.toutesLesQuestions().toString());
-        this.remplirRecycler("Que penses tu des poires ?");
-        this.remplirRecycler("Que penses tu des bananes ?");
-        this.remplirRecycler("Que penses tu des mangues ?");
-        this.remplirRecycler("Que penses tu des limes ?");
-        this.remplirRecycler("Que penses tu des citrons ?");
-        this.remplirRecycler("Que penses tu des mandarines ?");
-        this.remplirRecycler("Que penses tu des oranges ?");
-        this.remplirRecycler("Que penses tu des fraises ?");
-        this.remplirRecycler("Que penses tu des figues ?");
-        this.remplirRecycler("Que penses tu des avocats ?");
-        this.remplirRecycler("Que penses tu des raisins ?");
-        this.remplirRecycler("Que penses tu des clémentines ?");
-        this.remplirRecycler("Que penses tu des tomates ?");
-        this.remplirRecycler("Que penses tu des abricots ?");
-        this.remplirRecycler("Que penses tu des ananas ?");
-        this.remplirRecycler("Que penses tu des kakis ?");
-        this.remplirRecycler("Que penses tu des kiwis ?");
-        this.remplirRecycler("Que penses tu des melons ?");
-        this.remplirRecycler("Que penses tu des papayes ?");
-        this.remplirRecycler("Que penses tu des pêches ?");
+        this.remplirRecycler();
     }
 
     private void creerQuestion() {
@@ -105,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
     }
 
-    private void remplirRecycler(String texte) {
-            Question q = new Question();
-            q.LaQuestion = texte;
+    private void remplirRecycler() {
+        for (VDQuestion q : service.toutesLesQuestions()){
             mAdapter.list.add(q);
-        mAdapter.notifyDataSetChanged();
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }

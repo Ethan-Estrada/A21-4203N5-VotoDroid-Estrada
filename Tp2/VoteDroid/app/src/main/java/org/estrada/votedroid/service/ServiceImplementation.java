@@ -13,7 +13,7 @@ public class ServiceImplementation {
 
     private static ServiceImplementation single_instance = null;
     private BD maBD;
- 
+
     private ServiceImplementation (BD maBD){
         this.maBD = maBD;
     }
@@ -51,8 +51,11 @@ public class ServiceImplementation {
     }
 
     public List<VDQuestion> toutesLesQuestions() {
+
+        ArrayList<VDQuestion> arrayList = new ArrayList<>();
+        arrayList = (ArrayList<VDQuestion>) maBD.monDao().tousLesQuestions();
         //TODO Trier la liste recue en BD par nombre de votes et la retourner
-        return new ArrayList<>();
+        return new ArrayList<VDQuestion>();
     }
 
 

@@ -37,8 +37,6 @@ public class PoseQActivity extends AppCompatActivity {
                 .build();
         service = ServiceImplementation.getInstance(maBD);
 
-
-
         binding.btnPoseQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +44,9 @@ public class PoseQActivity extends AppCompatActivity {
                 String q = creerQuestion(binding.editTxtQuestion.getText().toString());
                 if (q != null){
                     Toast.makeText(getApplicationContext(),q, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    startActivity(new Intent(PoseQActivity.this, MainActivity.class));
                 }
 
             }
