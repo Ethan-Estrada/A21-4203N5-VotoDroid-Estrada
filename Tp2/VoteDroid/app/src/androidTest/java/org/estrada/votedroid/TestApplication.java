@@ -109,7 +109,7 @@ public class TestApplication {
     public void ajoutQuestionokbd(){
         VDQuestion question = new VDQuestion();
         question.texteQuestion = "jrngljrgnl";
-        Long id = bd.monDao().insertQuestion(question);
+        Long id = bd.monDao().creerQuestion(question);
 
         Assert.assertNotNull(question.idQuestion);
 

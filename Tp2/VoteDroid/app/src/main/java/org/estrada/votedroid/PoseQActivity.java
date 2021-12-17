@@ -46,6 +46,7 @@ public class PoseQActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),q, Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    Toast.makeText(getApplicationContext(),"Question ajoutée!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(PoseQActivity.this, MainActivity.class));
                 }
 

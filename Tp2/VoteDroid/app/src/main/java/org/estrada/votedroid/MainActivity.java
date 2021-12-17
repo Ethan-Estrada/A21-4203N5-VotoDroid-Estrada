@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, PoseQActivity.class);
                 startActivity(i);
-
             }
         });
 
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     private void remplirRecycler() {
         for (VDQuestion q : service.toutesLesQuestions()){
             mAdapter.list.add(q);
-            mAdapter.notifyDataSetChanged();
         }
+        mAdapter.notifyDataSetChanged();
     }
 }

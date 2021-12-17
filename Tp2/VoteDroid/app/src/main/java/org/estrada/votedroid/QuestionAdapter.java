@@ -38,6 +38,7 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
         txtQuestion = v.findViewById(R.id.txtQuestion);
         btnImageQ = v.findViewById(R.id.btnImage);
 
+        // TODO : les ecouteurs vont dans le onbindviewholder
         btnImageQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
