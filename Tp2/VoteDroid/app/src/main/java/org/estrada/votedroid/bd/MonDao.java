@@ -1,6 +1,7 @@
 package org.estrada.votedroid.bd;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
@@ -24,6 +25,12 @@ public abstract class MonDao {
 
 @Query("select * from VDQuestion")
 public abstract List<VDQuestion> tousLesQuestions();
+
+@Query("delete from VDQuestion")
+public  abstract void supprimerToutsLesQuestions();
+
+@Query("delete from VDVote")
+public  abstract void supprimerToutsLesVotes();
 
 @Transaction
 public Long CreerQuestionVote(VDQuestion qt, List<VDVote> vt){

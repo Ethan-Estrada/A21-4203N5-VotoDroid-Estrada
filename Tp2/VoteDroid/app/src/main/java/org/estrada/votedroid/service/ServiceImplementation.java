@@ -85,11 +85,11 @@ public class ServiceImplementation {
     public Map<Integer,Integer> distributionVotes(VDQuestion question){return null;}
 
     public void supprimerQuestions(){
-
+        maBD.monDao().supprimerToutsLesQuestions();
     }
 
     public  void supprimerVotes(){
-
+        maBD.monDao().supprimerToutsLesVotes();
     }
 
 }

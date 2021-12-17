@@ -2,6 +2,7 @@ package org.estrada.votedroid;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.estrada.votedroid.bd.BD;
 import org.estrada.votedroid.databinding.ActivityMainBinding;
@@ -48,26 +51,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         this.initRecycler();
         this.remplirRecycler();
     }
 
-    private void creerQuestion() {
-        try {
-            VDQuestion maQuestion = new VDQuestion();
-            maQuestion.texteQuestion ="AS-tu hate au nouveau film The Matrix Resurrection?";
-            service.creerQuestion(maQuestion);
-        }catch (MauvaiseQuestion m){
-            Log.e("CREERQUESTION", "Impossible de creer la question: "+ m.getMessage() );
-        }
+    @Override
+    public  boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.accueil_menu,menu);
+                return true;
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.accueil_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case  R.id.menu1:
+            service.supprimerQuestions();
+            mAdapter.notifyDataSetChanged();
+            startActivity(new Intent(MainActivity.this, MainActivity.class));
+            return true;
+            case  R.id.menu2:
+                service.supprimerVotes();
+                mAdapter.notifyDataSetChanged();
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initRecycler(){
