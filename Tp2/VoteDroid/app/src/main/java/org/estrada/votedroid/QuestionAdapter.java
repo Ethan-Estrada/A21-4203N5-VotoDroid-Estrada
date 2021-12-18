@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.MyViewHolder> {
+    private int questionP;
 
 public List<VDQuestion> list;
 
@@ -46,7 +47,6 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
                 v.getContext().startActivity(i);
             }
         });
-
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +54,7 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
                 v.getContext().startActivity(i);
             }
         });
+
     }
 }
     public QuestionAdapter() {
@@ -86,6 +87,5 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
     public int getItemCount() {
         return list.size();
     }
-
 }
 

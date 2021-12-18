@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -18,6 +19,9 @@ import org.estrada.votedroid.modele.VDQuestion;
 import org.estrada.votedroid.modele.VDVote;
 import org.estrada.votedroid.service.ServiceImplementation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Vote extends AppCompatActivity {
     private ActivityVoteBinding binding;
     private ServiceImplementation service;
@@ -31,18 +35,17 @@ public class Vote extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-
         maBD = Room.databaseBuilder(getApplicationContext(), BD.class,"BDQuestions")
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
                 .build();
         service = ServiceImplementation.getInstance(maBD);
 
+        binding.textViewQ.setText(service.toutesLesQuestions().get(1).texteQuestion);
 
         binding.btnAjouterVote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                creerVote(binding.editTxtVote.getText().toString(),binding.ratingBar.getNumStars());
                 String q = creerVote(binding.editTxtVote.getText().toString(),binding.ratingBar.getNumStars());
                 if (q != null){
                     Toast.makeText(getApplicationContext(),q, Toast.LENGTH_SHORT).show();

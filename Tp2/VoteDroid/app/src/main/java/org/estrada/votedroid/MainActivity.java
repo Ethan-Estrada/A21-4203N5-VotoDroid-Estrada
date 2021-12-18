@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
         this.initRecycler();
         this.remplirRecycler();
     }

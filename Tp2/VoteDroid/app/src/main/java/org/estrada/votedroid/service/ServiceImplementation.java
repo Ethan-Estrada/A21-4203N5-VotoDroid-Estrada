@@ -57,7 +57,7 @@ public class ServiceImplementation {
         if (vdVote.idVote != null) throw new MauvaisVote("Id non nul. La BD doit le gerer");
 
         // doublon
-        for (VDVote q : maBD.monDao().tousLesVotes()){
+        for (VDVote q : maBD.monDao().tousLesVotes(vdVote.idVote)){
             if (q.nomDuVotant.toLowerCase().equals(q.nomDuVotant.toUpperCase())){
                 throw new MauvaisVote("Vote deja existant");
             }
@@ -68,21 +68,36 @@ public class ServiceImplementation {
     }
 
     public List<VDQuestion> toutesLesQuestions() {
-        ArrayList<VDQuestion> arrayList = (ArrayList<VDQuestion>) maBD.monDao().tousLesQuestions();
-
+        //ArrayList<VDQuestion> arrayList = (ArrayList<VDQuestion>) maBD.monDao().tousLesQuestions();
         //TODO Trier la liste recue en BD par nombre de votes et la retourner
-        // Collections.sort(arrayList.get(maBD.monDao().), Collections.reverseOrder());
-
-        return arrayList;
+        //arrayList = Collections.sort(arrayList.get()), Collections.reverseOrder(arrayList));
+       // return arrayList
+       return new ArrayList<>();
     }
 
 
-    public float moyenneVotes(VDQuestion question) {return 0;}
+    public float moyenneVotes(VDQuestion question) {
+        int moyenne = 0;
+        VDVote v = new VDVote();
+        v.questionId = question.idQuestion;
+        for (  VDVote q : maBD.monDao().tousLesVotes(v.questionId) ){
+            moyenne += q.rating;
+            moyenne = moyenne / maBD.monDao().tousLesVotes(v.questionId).size();
+        }
+        return moyenne;
+    }
 
-    public float ecartTypeVotes(VDQuestion question) {return 0;}
+    public float ecartTypeVotes(VDQuestion question) {
+      //  float ecart;
+      //  VDVote v = new VDVote();
+      //  ecart = Math.pow(moyenneVotes(question),maBD.monDao().tousLesVotes(v.questionId).size());
+      //  return ecart;
+        return 0;
+    }
 
 
-    public Map<Integer,Integer> distributionVotes(VDQuestion question){return null;}
+    public Map<Integer,Integer> distributionVotes(VDQuestion question){
+        return null;}
 
     public void supprimerQuestions(){
         maBD.monDao().supprimerToutsLesQuestions();

@@ -16,6 +16,8 @@ import org.estrada.votedroid.exceptions.MauvaiseQuestion;
 import org.estrada.votedroid.modele.VDQuestion;
 import org.estrada.votedroid.service.ServiceImplementation;
 
+import java.util.ArrayList;
+
 public class PoseQActivity extends AppCompatActivity {
 
     private String lol;
@@ -40,7 +42,6 @@ public class PoseQActivity extends AppCompatActivity {
         binding.btnPoseQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                creerQuestion(binding.editTxtQuestion.getText().toString());
                 String q = creerQuestion(binding.editTxtQuestion.getText().toString());
                 if (q != null){
                     Toast.makeText(getApplicationContext(),q, Toast.LENGTH_SHORT).show();
@@ -49,7 +50,6 @@ public class PoseQActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Question ajoutée!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(PoseQActivity.this, MainActivity.class));
                 }
-
             }
         });
     }

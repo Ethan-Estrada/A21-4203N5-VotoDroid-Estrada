@@ -20,8 +20,8 @@ public abstract class MonDao {
     @Insert
     public abstract Long creerVote(VDVote v);
 
-    @Query("select * from VDVote where nomDuVotant")
-    public abstract List<VDVote> tousLesVotes();
+    @Query("select * from VDVote where questionId = :Id")
+    public abstract List<VDVote> tousLesVotes(Long Id);
 
 @Query("select * from VDQuestion")
 public abstract List<VDQuestion> tousLesQuestions();

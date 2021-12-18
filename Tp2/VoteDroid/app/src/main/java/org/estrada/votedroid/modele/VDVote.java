@@ -26,5 +26,4 @@ public class VDVote {
     @ColumnInfo
     public Long questionId;
 
-
 }

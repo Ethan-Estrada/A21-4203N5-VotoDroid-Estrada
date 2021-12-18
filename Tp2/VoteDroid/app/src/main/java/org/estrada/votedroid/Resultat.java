@@ -5,6 +5,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -19,7 +21,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+import org.estrada.votedroid.bd.BD;
 import org.estrada.votedroid.databinding.ActivityResultatBinding;
+import org.estrada.votedroid.modele.VDQuestion;
+import org.estrada.votedroid.modele.VDVote;
+import org.estrada.votedroid.service.ServiceImplementation;
 
 import java.util.ArrayList;
 
@@ -27,6 +33,9 @@ public class Resultat extends AppCompatActivity {
 
     private ActivityResultatBinding binding;
     public ArrayList<BarEntry> notes = new ArrayList<>();
+    private ServiceImplementation service;
+    private BD maBD;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,15 +46,22 @@ public class Resultat extends AppCompatActivity {
         setContentView(view);
         setTitle("Résultats");
 
-        binding.txtviewMoyenne.setText("Moyenne : ");
-        binding.txtviewEcart.setText("Ecart : ");
+        maBD = Room.databaseBuilder(getApplicationContext(), BD.class,"BDQuestions")
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
+        service = ServiceImplementation.getInstance(maBD);
+
+        VDQuestion q = new VDQuestion();
+        binding.txtviewMoyenne.setText("Moyenne : "+service.moyenneVotes(q));
+        binding.txtviewEcart.setText("Ecart : "+service.ecartTypeVotes(q));
 
 
         BarChart barChart = findViewById(R.id.barChart);
 
-        notes.add(new BarEntry(3,2));
-        notes.add(new BarEntry(4,1));
-        notes.add(new BarEntry(5,4));
+        for (VDVote v : maBD.monDao().tousLesVotes(q.idQuestion)){
+            notes.add(new BarEntry(v.idVote,v.rating));
+        }
 
         BarDataSet barDataSet = new BarDataSet(notes,"Notes");
         barDataSet.setDrawValues(false);
