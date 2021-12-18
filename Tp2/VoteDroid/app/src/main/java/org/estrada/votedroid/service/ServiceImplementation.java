@@ -68,11 +68,10 @@ public class ServiceImplementation {
     }
 
     public List<VDQuestion> toutesLesQuestions() {
-        //ArrayList<VDQuestion> arrayList = (ArrayList<VDQuestion>) maBD.monDao().tousLesQuestions();
+        ArrayList<VDQuestion> arrayList = (ArrayList<VDQuestion>) maBD.monDao().tousLesQuestions();
         //TODO Trier la liste recue en BD par nombre de votes et la retourner
         //arrayList = Collections.sort(arrayList.get()), Collections.reverseOrder(arrayList));
-       // return arrayList
-       return new ArrayList<>();
+       return arrayList;
     }
 
 

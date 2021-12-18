@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 public class PoseQActivity extends AppCompatActivity {
 
-    private String lol;
     private ActivityPoseBinding binding;
     private ServiceImplementation service;
     private BD maBD;

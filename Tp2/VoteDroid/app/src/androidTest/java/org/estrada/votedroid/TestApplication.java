@@ -8,8 +8,10 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.estrada.votedroid.bd.BD;
+import org.estrada.votedroid.exceptions.MauvaisVote;
 import org.estrada.votedroid.exceptions.MauvaiseQuestion;
 import org.estrada.votedroid.modele.VDQuestion;
+import org.estrada.votedroid.modele.VDVote;
 import org.estrada.votedroid.service.ServiceImplementation;
 import org.junit.Assert;
 import org.junit.Before;
@@ -104,32 +106,91 @@ public class TestApplication {
         Assert.fail("Exception MauvaiseQuestion non lancée");
     }
 
-    ///
-    @Test
-    public void ajoutQuestionokbd(){
-        VDQuestion question = new VDQuestion();
-        question.texteQuestion = "jrngljrgnl";
-        Long id = bd.monDao().creerQuestion(question);
+    //Test pour Vote
 
-        Assert.assertNotNull(question.idQuestion);
+    @Test(expected = MauvaisVote.class)
+    public void ajoutVoteKOVide() throws MauvaisVote {
+        VDVote v = new VDVote();
+        v.nomDuVotant = "";
+        service.creerVote(v);
 
-        // Jamais assumer le id d'une bd
-        //Assert.assertEquals(1, id, 0);
+        Assert.fail("Exception MauvaisVote non lancée");
     }
 
 
+    @Test(expected = MauvaisVote.class)
+    public void ajoutVoteKOCourte() throws MauvaisVote {
+        VDVote v = new VDVote();
+        v.nomDuVotant = "aa";
+        service.creerVote(v);
 
-    @Test
-    public  void ajoutQuestionsOKK() throws MauvaiseQuestion{
-        VDQuestion question = new VDQuestion();
-        question.texteQuestion ="rgrgrg";
-
-        Assert.assertNull(question.idQuestion);
-        service.creerQuestion(question);
-        Assert.assertNotNull(question.idQuestion);
+        Assert.fail("Exception MauvaiseVote non lancée");
     }
 
 
+    @Test(expected = MauvaisVote.class)
+    public void ajoutVoteKOLongue() throws MauvaisVote {
+        VDVote v = new VDVote();
+        for (int i = 0 ; i < 256 ; i ++) v.nomDuVotant += "aa";
+        service.creerVote(v);
+
+        Assert.fail("Exception MauvaiseVote non lancée");
+    }
+
+
+    @Test(expected = MauvaisVote.class)
+    public void ajoutVoteKOIDFixe() throws MauvaisVote {
+        VDVote v = new VDVote();
+        v.nomDuVotant = "aaaaaaaaaaaaaaaa";
+        v.idVote = 5L;
+        service.creerVote(v);
+
+        Assert.fail("Exception MauvaiseVote non lancée");
+    }
+
+
+    @Test
+    public void ajoutVoteOK() throws MauvaisVote {
+        VDVote v = new VDVote();
+        v.nomDuVotant = "Aimes-tu les brownies au chocolat?";
+        service.creerVote(v);
+
+        Assert.assertNotNull(v.idVote);
+    }
+
+
+    @Test(expected = MauvaisVote.class)
+    public void ajoutVoteKOExiste() throws MauvaisVote {
+        VDVote v = new VDVote();
+        VDVote v1 = new VDVote();
+
+        v.nomDuVotant= "Aimes-tu les brownies au chocolat?";
+        v1.nomDuVotant = "Aimes-tu les BROWNIES au chocolAT?";
+
+        service.creerVote(v);
+        service.creerVote(v1);
+
+        //TODO Ce test va fail tant que vous n'implémenterez pas toutesLesQuestions() dans ServiceImplementation
+        Assert.fail("Exception MauvaiseQuestion non lancée");
+    }
+
+    @Test(expected = MauvaisVote.class)
+    public void ajoutVoteRatingNegatif() throws MauvaisVote {
+        VDVote v = new VDVote();
+        v.rating = -1;
+        service.creerVote(v);
+
+        Assert.fail("Exception MauvaiseVote non lancée");
+    }
+
+    @Test(expected = MauvaisVote.class)
+    public void ajoutVoteRatingLong() throws MauvaisVote {
+        VDVote v = new VDVote();
+        v.rating =6;
+        service.creerVote(v);
+
+        Assert.fail("Exception MauvaiseVote non lancée");
+    }
 
 
 
