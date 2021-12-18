@@ -21,10 +21,13 @@ public abstract class MonDao {
     public abstract Long creerVote(VDVote v);
 
     @Query("select * from VDVote where questionId = :Id")
-    public abstract List<VDVote> tousLesVotes(Long Id);
+    public abstract List<VDVote> ObtenirTousLesVotes(Long Id);
 
 @Query("select * from VDQuestion")
 public abstract List<VDQuestion> tousLesQuestions();
+
+@Query("select * from VDVote")
+public abstract List<VDVote> tousLesVotes();
 
 @Query("delete from VDQuestion")
 public  abstract void supprimerToutsLesQuestions();

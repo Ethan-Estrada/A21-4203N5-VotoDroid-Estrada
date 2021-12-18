@@ -59,7 +59,7 @@ public class Resultat extends AppCompatActivity {
 
         BarChart barChart = findViewById(R.id.barChart);
 
-        for (VDVote v : maBD.monDao().tousLesVotes(q.idQuestion)){
+        for (VDVote v : maBD.monDao().ObtenirTousLesVotes(q.idQuestion)){
             notes.add(new BarEntry(v.idVote,v.rating));
         }
 

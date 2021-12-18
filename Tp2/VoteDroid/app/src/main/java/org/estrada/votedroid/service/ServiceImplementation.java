@@ -57,7 +57,7 @@ public class ServiceImplementation {
         if (vdVote.idVote != null) throw new MauvaisVote("Id non nul. La BD doit le gerer");
 
         // doublon
-        for (VDVote q : maBD.monDao().tousLesVotes(vdVote.idVote)){
+        for (VDVote q : maBD.monDao().ObtenirTousLesVotes(vdVote.idVote)){
             if (q.nomDuVotant.toLowerCase().equals(q.nomDuVotant.toUpperCase())){
                 throw new MauvaisVote("Vote deja existant");
             }
@@ -79,9 +79,9 @@ public class ServiceImplementation {
         int moyenne = 0;
         VDVote v = new VDVote();
         v.questionId = question.idQuestion;
-        for (  VDVote q : maBD.monDao().tousLesVotes(v.questionId) ){
+        for (  VDVote q : maBD.monDao().ObtenirTousLesVotes(v.questionId) ){
             moyenne += q.rating;
-            moyenne = moyenne / maBD.monDao().tousLesVotes(v.questionId).size();
+            moyenne = moyenne / maBD.monDao().ObtenirTousLesVotes(v.questionId).size();
         }
         return moyenne;
     }

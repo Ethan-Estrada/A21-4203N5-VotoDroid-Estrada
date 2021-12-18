@@ -55,6 +55,7 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
             }
         });
 
+
     }
 }
     public QuestionAdapter() {
@@ -80,12 +81,16 @@ public static class MyViewHolder extends androidx.recyclerview.widget.RecyclerVi
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         holder.txtQuestion.setText(list.get(position).texteQuestion);
+
+
     }
+
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return list.size();
     }
+
 }
 

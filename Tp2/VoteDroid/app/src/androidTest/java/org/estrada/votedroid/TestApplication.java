@@ -20,6 +20,9 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -192,6 +195,36 @@ public class TestApplication {
         Assert.fail("Exception MauvaiseVote non lancée");
     }
 
+    //Test Menu developpement
+
+    @Test
+    public void TestDeleteQuestions(){
+        Context context = ApplicationProvider.getApplicationContext();
+        BD bd = Room.inMemoryDatabaseBuilder(context,BD.class).build();
+        for (int i =0; i<100;i++){
+            VDQuestion q = new VDQuestion();
+            q.texteQuestion= "lol"+i;
+            bd.monDao().creerQuestion(q);
+        }
+        List<VDQuestion> questions = bd.monDao().tousLesQuestions();
+        bd.monDao().supprimerToutsLesQuestions();
+        assertEquals(0,questions.size());
+    }
+
+    @Test
+    public void TestDeleteVotes(){
+        Context context = ApplicationProvider.getApplicationContext();
+        BD bd = Room.inMemoryDatabaseBuilder(context,BD.class).build();
+        for (int i =0; i<100;i++){
+            VDVote v = new VDVote();
+            v.nomDuVotant= "lol"+i;
+            v.rating = 4;
+            bd.monDao().creerVote(v);
+        }
+        List<VDVote> vdVotes = bd.monDao().tousLesVotes();
+        bd.monDao().supprimerToutsLesVotes();
+        assertEquals(0,vdVotes.size());
+    }
 
 
     /*

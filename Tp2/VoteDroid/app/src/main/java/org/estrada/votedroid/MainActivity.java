@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.estrada.votedroid.bd.BD;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         this.initRecycler();
         this.remplirRecycler();
     }
